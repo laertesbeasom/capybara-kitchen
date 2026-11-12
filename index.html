@@ -669,12 +669,12 @@ async function load(){
 function enqueue(op){queue.push(op);LS.set("capy.queue",queue);clearTimeout(flushTimer);flushTimer=setTimeout(flush,400)}
 async function flush(){
   if(flushing||!queue.length||!API)return;flushing=true;
-  const batch=queue.slice(0,40);
+  let batch=[];for(const op of queue){if(batch.length&&encodeURIComponent(JSON.stringify(batch.concat([op]))).length>5500)break;batch.push(op);if(batch.length>=20)break}
   try{
-    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({token:TOKEN,ops:batch})});
+    const r=await fetch(API+"?token="+encodeURIComponent(TOKEN)+"&ops="+encodeURIComponent(JSON.stringify(batch))+"&t="+Date.now());
     const j=await r.json();if(!j.ok)throw new Error(j.error||"error");
     queue=queue.slice(batch.length);LS.set("capy.queue",queue);status("");
-  }catch(e){status("Не получилось сохранить в таблицу, попробую ещё раз чуть позже.");setTimeout(flush,15000)}
+  }catch(e){status("Не получилось сохранить в таблицу ("+(e&&e.message||"нет связи")+"), попробую ещё раз чуть позже.");setTimeout(flush,15000)}
   flushing=false;if(queue.length)setTimeout(flush,300);
 }
 async function put(col,id,data){
