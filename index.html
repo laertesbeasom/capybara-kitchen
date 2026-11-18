@@ -3,33 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#161b45">
+<meta name="theme-color" content="#FFF6F1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Капибара">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Кухня">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Кухня капибары</title>
+<title>Моя кухня</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Layout: scene banner on top, tab bar, one panel at a time; single dark-navy world */
 :root{
-  --night:#0d1630;      /* page background */
-  --panel:#16234a;      /* cards */
-  --panel2:#1d2d5c;     /* raised / inputs */
-  --line:#2b3d73;
-  --ink:#e9edff;        /* text */
-  --muted:#9aa6d6;
-  --peach:#ffb48a;      /* accent */
-  --lav:#b3c0ff;
-  --good:#7fe0b8; --warn:#ffd27a; --bad:#ff8f9a;
+  --night:#FFF6F1;      /* page background: peach cream */
+  --panel:#FFFFFF;      /* cards */
+  --panel2:#FBF3EF;     /* raised / inputs */
+  --line:#F0E2DC;
+  --ink:#3F3550;        /* text: deep plum */
+  --muted:#8C8299;
+  --peach:#F2A488;      /* accent */
+  --lav:#B9A7E3;
+  --good:#2F8A63; --warn:#A9741A; --bad:#C2546A;
   --display:"Comfortaa","Nunito",system-ui,sans-serif;
   --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
-  color-scheme:dark;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html,body{margin:0;background-color:var(--night);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
@@ -138,7 +138,7 @@ h2 .stk,h3 .stk{margin-left:6px}
 .say small{display:block;font-weight:600;color:#5a6390;font-size:.78rem}
 .say.pop{animation:pop .35s ease}
 @keyframes pop{40%{transform:scale(1.03)}}
-#capyHit{cursor:pointer}
+#heroHit{cursor:pointer}
 .fly{position:fixed;pointer-events:none;z-index:50;font-size:22px;animation:fly 1.1s ease-out forwards}
 @keyframes fly{0%{opacity:1;transform:translate(0,0) scale(.6) rotate(0)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(var(--rot))}}
 .cups{display:flex;gap:6px;flex-wrap:wrap}
@@ -148,50 +148,77 @@ h2 .stk,h3 .stk{margin-left:6px}
 @media (prefers-reduced-motion:reduce){.fly,.say.pop{animation:none}}
 
 body{background-image:
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg opacity='.16'%3E%3Cpath d='M30 20l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z' fill='%23ffd27a'/%3E%3Ccircle cx='160' cy='40' r='9' fill='%23ff9a3c'/%3E%3Cpath d='M160 31q4-6 9-3' stroke='%233fae6a' stroke-width='3' fill='none'/%3E%3Cpath d='M100 120c-8-6-8-14-2-16 4-1 6 3 6 3s2-4 6-3c6 2 6 10-2 16z' fill='%23ff8fb1'/%3E%3Ccircle cx='40' cy='160' r='3' fill='%23b3c0ff'/%3E%3Ccircle cx='190' cy='150' r='2.5' fill='%237fe0b8'/%3E%3Cpath d='M180 190l2 5 5 2-5 2-2 5-2-5-5-2 5-2z' fill='%23fff'/%3E%3Cpath d='M70 70l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z' fill='%23fff'/%3E%3Cpath d='M120 180q8-14 16 0z' fill='%23fbf8f2'/%3E%3Crect x='124' y='174' width='8' height='6' fill='%2324323f'/%3E%3C/g%3E%3C/svg%3E"),
-  radial-gradient(900px 600px at 0% 0%,rgba(150,110,255,.35),transparent 60%),
-  radial-gradient(800px 600px at 100% 30%,rgba(255,140,170,.22),transparent 60%),
-  radial-gradient(900px 700px at 30% 100%,rgba(90,210,190,.22),transparent 60%);
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg opacity='.22'%3E%3Ccircle cx='40' cy='40' r='9' fill='%23F6A65B'/%3E%3Cpath d='M40 31q4-6 9-3' stroke='%2388C49B' stroke-width='3' fill='none'/%3E%3Cpath d='M170 40l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z' fill='%23F5D38A'/%3E%3Cpath d='M120 130c-8-6-8-14-2-16 4-1 6 3 6 3s2-4 6-3c6 2 6 10-2 16z' fill='%23F2A7BE'/%3E%3Ccircle cx='60' cy='180' r='3' fill='%23B9A7E3'/%3E%3Ccircle cx='205' cy='160' r='3' fill='%239ED4BC'/%3E%3Cpath d='M185 205q9-15 18 0z' fill='%23fff' stroke='%23E7D9D2' stroke-width='2'/%3E%3Crect x='189' y='198' width='10' height='7' fill='%23B9A7E3'/%3E%3C/g%3E%3C/svg%3E"),
+  radial-gradient(900px 600px at 0% 0%,rgba(185,167,227,.30),transparent 60%),
+  radial-gradient(800px 600px at 100% 25%,rgba(242,164,136,.25),transparent 60%),
+  radial-gradient(900px 700px at 30% 100%,rgba(158,212,188,.22),transparent 60%);
   background-attachment:fixed}
-:root{--night:#161b45;--panel:rgba(32,40,96,.82);--panel2:rgba(255,255,255,.07);--line:rgba(179,192,255,.22)}
-.card{backdrop-filter:blur(6px);border-top:4px solid var(--acc,#b3c0ff);box-shadow:0 8px 24px rgba(5,8,30,.35)}
-.card h2,.card h3{color:var(--acc,#e9edff)}
-.panel > .card:nth-child(5n+1),.grid2 > .card:nth-child(5n+1){--acc:#ffb48a}
-.panel > .card:nth-child(5n+2),.grid2 > .card:nth-child(5n+2){--acc:#7fe0b8}
-.panel > .card:nth-child(5n+3),.grid2 > .card:nth-child(5n+3){--acc:#c8b6ff}
-.panel > .card:nth-child(5n+4),.grid2 > .card:nth-child(5n+4){--acc:#ffd27a}
-.panel > .card:nth-child(5n+5),.grid2 > .card:nth-child(5n+5){--acc:#ff9fbf}
-.day.today{box-shadow:0 0 0 2px var(--peach),0 8px 24px rgba(5,8,30,.35)}
-.tabs{background:linear-gradient(var(--night),rgba(22,27,69,.92))}
-.tabs button{background:rgba(255,255,255,.08)}
-.tabs button[data-t="today"][aria-selected="true"]{background:#ffd27a;border-color:#ffd27a}
-.tabs button[data-t="menu"][aria-selected="true"]{background:#ffb48a;border-color:#ffb48a}
-.tabs button[data-t="pantry"][aria-selected="true"]{background:#7fe0b8;border-color:#7fe0b8}
-.tabs button[data-t="shop"][aria-selected="true"]{background:#8fd0ff;border-color:#8fd0ff}
-.tabs button[data-t="budget"][aria-selected="true"]{background:#c8b6ff;border-color:#c8b6ff}
-.tabs button[data-t="preserves"][aria-selected="true"]{background:#ff9fbf;border-color:#ff9fbf}
-.tabs button[data-t="recipes"][aria-selected="true"]{background:#ffe3a3;border-color:#ffe3a3}
-.tabs button[data-t="smart"][aria-selected="true"]{background:#7fe0b8;border-color:#7fe0b8}
+.card{border:1px solid var(--line);border-top:5px solid var(--acc,#B9A7E3);box-shadow:0 6px 20px rgba(140,110,150,.10)}
+.card h2,.card h3{color:var(--ink)}
+.card > h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--acc,#B9A7E3);margin-right:8px;vertical-align:middle}
+.panel > .card:nth-child(5n+1),.grid2 > .card:nth-child(5n+1){--acc:#F2A488}
+.panel > .card:nth-child(5n+2),.grid2 > .card:nth-child(5n+2){--acc:#B9A7E3}
+.panel > .card:nth-child(5n+3),.grid2 > .card:nth-child(5n+3){--acc:#9ED4BC}
+.panel > .card:nth-child(5n+4),.grid2 > .card:nth-child(5n+4){--acc:#F5D38A}
+.panel > .card:nth-child(5n+5),.grid2 > .card:nth-child(5n+5){--acc:#F2A7BE}
+.day.today{box-shadow:0 0 0 2px var(--peach),0 6px 20px rgba(140,110,150,.12)}
+.tabs{background:linear-gradient(var(--night),rgba(255,246,241,.94))}
+.tabs button{background:#fff;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button[data-t="today"][aria-selected="true"]{background:#F5D38A;border-color:#F5D38A}
+.tabs button[data-t="menu"][aria-selected="true"]{background:#F2A488;border-color:#F2A488}
+.tabs button[data-t="pantry"][aria-selected="true"]{background:#9ED4BC;border-color:#9ED4BC}
+.tabs button[data-t="shop"][aria-selected="true"]{background:#A9CDEF;border-color:#A9CDEF}
+.tabs button[data-t="budget"][aria-selected="true"]{background:#B9A7E3;border-color:#B9A7E3}
+.tabs button[data-t="preserves"][aria-selected="true"]{background:#F2A7BE;border-color:#F2A7BE}
+.tabs button[data-t="recipes"][aria-selected="true"]{background:#F8DDB0;border-color:#F8DDB0}
+.tabs button[data-t="smart"][aria-selected="true"]{background:#D7C9F2;border-color:#D7C9F2}
+.p-good{background:rgba(158,212,188,.30);color:var(--good)}
+.p-warn{background:rgba(245,211,138,.38);color:var(--warn)}
+.p-bad{background:rgba(242,167,190,.30);color:var(--bad)}
+.p-lav{background:rgba(185,167,227,.25);color:#6E58B5}
 .ing{display:inline-block;border-radius:999px;padding:1px 9px;margin:2px 4px 2px 0;font-size:.8rem;font-weight:700}
-.ing.ok{background:rgba(127,224,184,.16);color:var(--good)}
-.ing.no{background:rgba(255,143,154,.16);color:var(--bad)}
-.ing.exp{box-shadow:inset 0 0 0 1.5px var(--warn)}
-.meter{height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0}
-.meter i{display:block;height:100%;background:linear-gradient(90deg,#7fe0b8,#ffd27a)}
-.seg{display:inline-flex;gap:4px;background:rgba(255,255,255,.07);padding:3px;border-radius:999px}
+.ing.ok{background:rgba(158,212,188,.30);color:var(--good)}
+.ing.no{background:rgba(242,167,190,.28);color:var(--bad)}
+.ing.exp{box-shadow:inset 0 0 0 1.5px #E3B04B}
+.meter{height:7px;border-radius:999px;background:#F3E9E6;overflow:hidden;margin:6px 0}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,#9ED4BC,#F5D38A)}
+.bar{background:#F3E9E6}
+.bar i{background:linear-gradient(90deg,#B9A7E3,#F2A7BE)}
+.seg{display:inline-flex;gap:4px;background:var(--panel2);padding:3px;border-radius:999px}
 .seg button{border:0;background:none;border-radius:999px;padding:4px 11px;cursor:pointer;font-weight:700;color:var(--muted)}
-.seg button[aria-pressed="true"]{background:#7fe0b8;color:#10261c}
-.chip{background:var(--panel);border-top:4px solid var(--acc,#b3c0ff)}
-.chips .chip:nth-child(1){--acc:#7fe0b8}.chips .chip:nth-child(2){--acc:#ff9fbf}.chips .chip:nth-child(3){--acc:#8fd0ff}.chips .chip:nth-child(4){--acc:#ffd27a}
-.chip b{color:var(--acc,#e9edff)}
-.scene{border:3px solid rgba(255,255,255,.18);box-shadow:0 10px 30px rgba(5,8,30,.45)}
+.seg button[aria-pressed="true"]{background:#9ED4BC;color:var(--ink)}
+.chip{background:#fff;border-top:5px solid var(--acc,#B9A7E3);box-shadow:0 4px 14px rgba(140,110,150,.08)}
+.chips .chip:nth-child(1){--acc:#9ED4BC}.chips .chip:nth-child(2){--acc:#F2A7BE}.chips .chip:nth-child(3){--acc:#A9CDEF}.chips .chip:nth-child(4){--acc:#F5D38A}
+.chip b{color:var(--ink)}
+.btn{background:#fff}
+.btn.acc{color:#4A2E22}
+.btn:hover{border-color:var(--peach)}
+.check{border-color:#CDBFEB;background:#fff}
+.check[aria-checked="true"]{background:#9ED4BC;border-color:#9ED4BC}
+.check[aria-checked="true"]::after{color:#fff}
+.item.urgent{border-color:rgba(242,164,136,.65);background:#FFF1EB}
+.modal{background:rgba(63,53,80,.35)}
+.sheet{box-shadow:0 20px 50px rgba(63,53,80,.25)}
+.scene{border:3px solid #fff;box-shadow:0 10px 28px rgba(140,110,150,.18)}
+.hello h1{color:var(--ink);text-shadow:0 1px 10px rgba(255,255,255,.8)}
+.hello p{color:#5B4F6E;text-shadow:0 1px 8px rgba(255,255,255,.8)}
+.scene.night .hello h1,.scene.night .hello p{color:#fff;text-shadow:0 1px 8px rgba(60,40,100,.45)}
+.phase{background:rgba(255,255,255,.65)}
+.phase button{color:var(--ink)}
+.phase button[aria-pressed="true"]{color:#4A2E22}
+.say{background:#fff;color:var(--ink);box-shadow:0 8px 22px rgba(140,110,150,.18);border:1px solid var(--line)}
+.say::before{border-bottom-color:#fff}
+.say small{color:var(--muted)}
+.stk{filter:drop-shadow(0 2px 3px rgba(140,110,150,.25))}
+.slotk{border-color:#E7D6DD}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="scene" id="scene">
-    <svg id="sky" viewBox="0 -80 800 340" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Капибара"></svg>
+    <svg id="sky" viewBox="0 -80 800 340" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Картинка дня"></svg>
     <div class="hello">
       <div><h1 id="greet">Привет!</h1><p id="sub"></p></div>
       <div class="row" style="gap:6px"><button class="btn tiny" id="syncBtn" type="button" title="Обновить данные" aria-label="Обновить данные">🔄</button><button class="btn tiny" id="cfgBtn" type="button" aria-label="Настройки подключения">⚙️</button></div>
@@ -255,92 +282,81 @@ const SPENDCATS=["Продукты","Рынок","Кафе и доставка �
 
 /* ---------- scene ---------- */
 function phaseNow(){const h=new Date().getHours();return h>=5&&h<11?"morning":h>=11&&h<17?"day":"night"}
-function capyLying(x,y,sleep,orange){
-  return `<g transform="translate(${x},${y})">
-   <ellipse cx="0" cy="34" rx="92" ry="10" fill="#0b1328" opacity=".35"/>
-   <ellipse cx="-10" cy="0" rx="78" ry="36" fill="#b07a52"/>
-   <ellipse cx="-20" cy="-8" rx="58" ry="20" fill="#c08a60" opacity=".55"/>
-   <ellipse cx="-58" cy="28" rx="16" ry="8" fill="#9c6a45"/><ellipse cx="34" cy="30" rx="16" ry="8" fill="#9c6a45"/>
-   <g transform="translate(66,-14)">
-     <rect x="-30" y="-26" width="68" height="50" rx="24" fill="#b07a52"/>
-     <rect x="8" y="-18" width="36" height="40" rx="16" fill="#9c6a45"/>
-     <ellipse cx="-20" cy="-26" rx="8" ry="6" fill="#8a5c3c"/>
-     <ellipse cx="34" cy="-6" rx="3" ry="2.4" fill="#3a2418"/>
-     ${sleep?`<path d="M-6 -6 q6 5 12 0" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/>`
-            :`<circle cx="0" cy="-6" r="4" fill="#2a1a10"/><circle cx="1.5" cy="-7.5" r="1.3" fill="#fff"/>`}
-     <ellipse cx="-4" cy="8" rx="7" ry="4" fill="#e8907a" opacity=".55"/>
-     ${orange?`<circle cx="-4" cy="-38" r="14" fill="#ff9a3c"/><path d="M-4 -52 q6 -6 12 -2" stroke="#3fae6a" stroke-width="4" fill="none" stroke-linecap="round"/>`:""}
-   </g>
-   ${sleep?`<g fill="#dfe5ff" font-family="Comfortaa" font-weight="700"><text class="zz" x="110" y="-48" font-size="20">z</text><text class="zz" style="animation-delay:1s" x="128" y="-68" font-size="15">z</text></g>`:""}
-  </g>`;
-}
-function capyTable(x,y){
-  return `<g transform="translate(${x},${y})">
-   <ellipse cx="40" cy="78" rx="140" ry="10" fill="#0b1328" opacity=".35"/>
-   <ellipse cx="-40" cy="22" rx="50" ry="54" fill="#b07a52"/>
-   <ellipse cx="-20" cy="60" rx="18" ry="9" fill="#9c6a45"/>
-   <g transform="translate(-24,-48)">
-     <rect x="-30" y="-26" width="68" height="52" rx="24" fill="#b07a52"/>
-     <rect x="8" y="-18" width="36" height="40" rx="16" fill="#9c6a45"/>
-     <ellipse cx="-20" cy="-26" rx="8" ry="6" fill="#8a5c3c"/>
-     <ellipse cx="34" cy="-6" rx="3" ry="2.4" fill="#3a2418"/>
-     <circle cx="0" cy="-6" r="4" fill="#2a1a10"/><circle cx="1.5" cy="-7.5" r="1.3" fill="#fff"/>
-     <ellipse cx="-4" cy="8" rx="7" ry="4" fill="#e8907a" opacity=".55"/>
-   </g>
-   <rect x="10" y="18" width="190" height="10" rx="5" fill="#6d4a35"/>
-   <rect x="24" y="28" width="9" height="50" fill="#5a3c2b"/><rect x="178" y="28" width="9" height="50" fill="#5a3c2b"/>
-   <path d="M60 18 a36 22 0 0 0 72 0 z" fill="#e9edff"/><path d="M64 18 h64" stroke="#ffb48a" stroke-width="5"/>
-   <line x1="120" y1="-6" x2="150" y2="14" stroke="#c9a27a" stroke-width="3" stroke-linecap="round"/>
-   <line x1="126" y1="-10" x2="154" y2="12" stroke="#c9a27a" stroke-width="3" stroke-linecap="round"/>
-   <g stroke="#dfe5ff" stroke-width="3" fill="none" stroke-linecap="round">
-     <path class="steam" d="M84 8 q-6 -10 0 -20"/><path class="steam" style="animation-delay:.8s" d="M98 6 q-6 -10 0 -22"/><path class="steam" style="animation-delay:1.6s" d="M112 8 q-6 -10 0 -20"/>
-   </g>
-   <circle cx="172" cy="10" r="9" fill="#ff9a3c"/>
-  </g>`;
-}
-function flowers(night){let f="";const cols=night?["#c8b6ff","#8fd0ff","#ff9fbf"]:["#ff9fbf","#ffd27a","#fff","#c8b6ff","#ff8f6b"];
-  const xs=[40,95,150,560,620,690,745,300,480];xs.forEach((x,i)=>{const y=214+(i%3)*10;const c=cols[i%cols.length];
-   f+=`<g transform="translate(${x},${y})"><line x1="0" y1="0" x2="0" y2="16" stroke="#3fae6a" stroke-width="2.5"/>${[0,72,144,216,288].map(a=>`<circle cx="${(Math.cos(a*Math.PI/180)*5).toFixed(1)}" cy="${(Math.sin(a*Math.PI/180)*5).toFixed(1)}" r="4" fill="${c}"/>`).join("")}<circle r="3" fill="#ffd27a"/></g>`});return f}
-function mandarinTree(x,y){return `<g transform="translate(${x},${y})"><rect x="-6" y="0" width="12" height="44" rx="5" fill="#7a5233"/><circle cx="0" cy="-12" r="38" fill="#2f8f5b"/><circle cx="-22" cy="4" r="24" fill="#2f8f5b"/><circle cx="24" cy="2" r="26" fill="#37a066"/>
-  ${[[-18,-24],[12,-30],[22,-4],[-26,6],[0,-2],[30,14]].map(([a,b])=>`<circle cx="${a}" cy="${b}" r="6.5" fill="#ff9a3c"/>`).join("")}</g>`}
-function capyOnsen(x,y){return `<g transform="translate(${x},${y})">
-   <ellipse cx="0" cy="30" rx="150" ry="34" fill="#5d6a8f"/><ellipse cx="0" cy="26" rx="138" ry="26" fill="#7fc4e8"/><ellipse cx="-30" cy="22" rx="60" ry="8" fill="#b4e3f7" opacity=".6"/>
-   ${[-140,-100,-60,-20,20,60,100,140].map((sx,i)=>`<ellipse cx="${sx}" cy="${52-Math.abs(sx)/12}" rx="20" ry="11" fill="${i%2?"#8a93b3":"#6f7899"}"/>`).join("")}
-   <g transform="translate(-10,-6)"><ellipse cx="0" cy="22" rx="56" ry="20" fill="#b07a52"/>
-     <g transform="translate(36,-6)"><rect x="-30" y="-26" width="68" height="50" rx="24" fill="#b07a52"/><rect x="8" y="-18" width="36" height="40" rx="16" fill="#9c6a45"/>
-     <ellipse cx="-20" cy="-26" rx="8" ry="6" fill="#8a5c3c"/><ellipse cx="34" cy="-6" rx="3" ry="2.4" fill="#3a2418"/>
-     <path d="M-6 -6 q6 5 12 0" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="-4" cy="8" rx="7" ry="4" fill="#ff9fbf" opacity=".7"/>
-     <rect x="-14" y="-40" width="26" height="10" rx="4" fill="#fff"/><rect x="-14" y="-36" width="26" height="3" fill="#8fd0ff"/></g></g>
-   <rect x="-140" y="20" width="280" height="10" fill="#7fc4e8"/>
-   ${[[-100,24],[-64,30],[70,26],[104,32],[-20,34]].map(([a,b])=>`<g><circle cx="${a}" cy="${b}" r="9" fill="#ff9a3c"/><circle cx="${a-3}" cy="${b-3}" r="2.5" fill="#ffc27a"/></g>`).join("")}
-   <g stroke="#e9edff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"><path class="steam" d="M-80 4 q-6 -12 0 -24"/><path class="steam" style="animation-delay:1s" d="M90 6 q-6 -12 0 -24"/><path class="steam" style="animation-delay:1.8s" d="M-30 0 q-6 -12 0 -24"/></g>
-   <g fill="#dfe5ff" font-family="Comfortaa" font-weight="700"><text class="zz" x="70" y="-50" font-size="20">z</text><text class="zz" style="animation-delay:1s" x="88" y="-70" font-size="15">z</text></g>
+function face(cx,cy,k=1,sleep=false){
+  const e=9*k;return `<g transform="translate(${cx},${cy})">
+   ${sleep?`<path d="M${-e-4*k} 0 q${4*k} ${4*k} ${8*k} 0M${e-4*k} 0 q${4*k} ${4*k} ${8*k} 0" stroke="#4A3B55" stroke-width="${2.6*k}" fill="none" stroke-linecap="round"/>`
+     :`<circle cx="${-e}" cy="0" r="${3.6*k}" fill="#4A3B55"/><circle cx="${e}" cy="0" r="${3.6*k}" fill="#4A3B55"/><circle cx="${-e+1.3*k}" cy="${-1.4*k}" r="${1.2*k}" fill="#fff"/><circle cx="${e+1.3*k}" cy="${-1.4*k}" r="${1.2*k}" fill="#fff"/>`}
+   <path d="M${-4*k} ${7*k} q${2*k} ${3*k} ${4*k} 0 q${2*k} ${3*k} ${4*k} 0" stroke="#4A3B55" stroke-width="${2.2*k}" fill="none" stroke-linecap="round"/>
+   <ellipse cx="${-e-6*k}" cy="${7*k}" rx="${5*k}" ry="${3*k}" fill="#F7A8B8" opacity=".75"/><ellipse cx="${e+6*k}" cy="${7*k}" rx="${5*k}" ry="${3*k}" fill="#F7A8B8" opacity=".75"/>
   </g>`}
+function mandarinBuddy(x,y,r=22,sleep=false){return `<g transform="translate(${x},${y})"><circle r="${r}" fill="#F6A65B"/><circle cx="${-r*.35}" cy="${-r*.35}" r="${r*.25}" fill="#FFC98F" opacity=".8"/>
+  <path d="M0 ${-r} q${r*.4} ${-r*.5} ${r*.8} ${-r*.2} q${-r*.3} ${r*.4} ${-r*.8} ${r*.2}z" fill="#88C49B"/>${face(0,r*.05,r/30,sleep)}</g>`}
+function eggHero(x,y){return `<g transform="translate(${x},${y})">
+   <ellipse cx="20" cy="62" rx="110" ry="9" fill="#8C7A9E" opacity=".18"/>
+   <path d="M0 -62 C34 -62 52 -10 50 20 C48 52 28 64 0 64 C-28 64 -48 52 -50 20 C-52 -10 -34 -62 0 -62Z" fill="#FFFDF8" stroke="#EADBD0" stroke-width="3"/>
+   <ellipse cx="-18" cy="-28" rx="10" ry="16" fill="#fff" opacity=".9"/>
+   ${face(0,12,1.25)}
+   <path d="M-48 26 q-16 4 -18 -10" stroke="#EADBD0" stroke-width="6" fill="none" stroke-linecap="round"/>
+   <path d="M48 26 q16 4 22 -12" stroke="#EADBD0" stroke-width="6" fill="none" stroke-linecap="round"/>
+   ${mandarinBuddy(96,40,24)}
+   <g transform="translate(-92,46)"><rect x="-18" y="-10" width="36" height="22" rx="8" fill="#B9A7E3"/><path d="M18 -4 q10 0 9 7 q-1 5 -9 4" stroke="#B9A7E3" stroke-width="4" fill="none"/>
+     <g stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"><path class="steam" d="M-6 -16 q-4 -8 0 -16"/><path class="steam" style="animation-delay:.9s" d="M5 -16 q-4 -8 0 -16"/></g></g>
+  </g>`}
+function onigiriHero(x,y){return `<g transform="translate(${x},${y})">
+   <ellipse cx="60" cy="78" rx="160" ry="10" fill="#8C7A9E" opacity=".18"/>
+   <path d="M-40 -64 C-30 -78 -10 -78 0 -64 L38 4 C46 20 38 34 20 34 H-60 C-78 34 -86 20 -78 4Z" fill="#FFFFFF" stroke="#EADBD0" stroke-width="3"/>
+   <rect x="-46" y="4" width="32" height="30" rx="4" fill="#4E5B6E"/>
+   ${face(-20,-18,1.15)}
+   <rect x="40" y="18" width="190" height="10" rx="5" fill="#E7C3A6"/>
+   <rect x="54" y="28" width="9" height="50" rx="3" fill="#D9AE8E"/><rect x="208" y="28" width="9" height="50" rx="3" fill="#D9AE8E"/>
+   <path d="M90 18 a36 22 0 0 0 72 0 z" fill="#fff" stroke="#EADBD0" stroke-width="2"/><path d="M94 18 h64" stroke="#F2A488" stroke-width="5"/>
+   <line x1="150" y1="-6" x2="180" y2="14" stroke="#C9A27A" stroke-width="3" stroke-linecap="round"/>
+   <line x1="156" y1="-10" x2="184" y2="12" stroke="#C9A27A" stroke-width="3" stroke-linecap="round"/>
+   <g stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"><path class="steam" d="M114 8 q-6 -10 0 -20"/><path class="steam" style="animation-delay:.8s" d="M128 6 q-6 -10 0 -22"/><path class="steam" style="animation-delay:1.6s" d="M142 8 q-6 -10 0 -20"/></g>
+   ${mandarinBuddy(200,0,14)}
+  </g>`}
+function mandarinOnsen(x,y){return `<g transform="translate(${x},${y})">
+   <ellipse cx="0" cy="30" rx="150" ry="34" fill="#9C91BE"/><ellipse cx="0" cy="26" rx="138" ry="26" fill="#BFE3F2"/><ellipse cx="-30" cy="22" rx="60" ry="8" fill="#E6F6FC" opacity=".7"/>
+   ${[-140,-100,-60,-20,20,60,100,140].map((sx,i)=>`<ellipse cx="${sx}" cy="${52-Math.abs(sx)/12}" rx="20" ry="11" fill="${i%2?"#B3A9D2":"#A398C6"}"/>`).join("")}
+   <g transform="translate(0,-4)"><circle r="40" fill="#F6A65B"/><circle cx="-14" cy="-14" r="10" fill="#FFC98F" opacity=".8"/>
+     ${face(0,2,1.3,true)}
+     <rect x="-20" y="-50" width="40" height="13" rx="5" fill="#fff"/><rect x="-20" y="-45" width="40" height="3" fill="#A9CDEF"/></g>
+   <rect x="-140" y="20" width="280" height="10" fill="#BFE3F2"/>
+   ${[[-100,24],[-64,30],[70,26],[104,32]].map(([a,b])=>mandarinBuddy(a,b,9,true)).join("")}
+   <g stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"><path class="steam" d="M-80 4 q-6 -12 0 -24"/><path class="steam" style="animation-delay:1s" d="M90 6 q-6 -12 0 -24"/><path class="steam" style="animation-delay:1.8s" d="M-40 0 q-6 -12 0 -24"/></g>
+   <g fill="#fff" font-family="Comfortaa" font-weight="700"><text class="zz" x="52" y="-50" font-size="20">z</text><text class="zz" style="animation-delay:1s" x="70" y="-70" font-size="15">z</text></g>
+  </g>`}
+function flowers(night){let f="";const cols=night?["#E7DDF7","#CFE6F7","#F7D3DF"]:["#F2A7BE","#F5D38A","#fff","#B9A7E3","#F2A488"];
+  const xs=[40,95,150,560,620,690,745,300,480];xs.forEach((x,i)=>{const y=214+(i%3)*10;const c=cols[i%cols.length];
+   f+=`<g transform="translate(${x},${y})"><line x1="0" y1="0" x2="0" y2="16" stroke="#7DB98F" stroke-width="2.5"/>${[0,72,144,216,288].map(a=>`<circle cx="${(Math.cos(a*Math.PI/180)*5).toFixed(1)}" cy="${(Math.sin(a*Math.PI/180)*5).toFixed(1)}" r="4" fill="${c}"/>`).join("")}<circle r="3" fill="#F5D38A"/></g>`});return f}
+function mandarinTree(x,y,night){const l1=night?"#7E9FB0":"#8FCB9F",l2=night?"#89A9BA":"#9ED4AC";return `<g transform="translate(${x},${y})"><rect x="-6" y="0" width="12" height="44" rx="5" fill="#C9A27A"/><circle cx="0" cy="-12" r="38" fill="${l1}"/><circle cx="-22" cy="4" r="24" fill="${l1}"/><circle cx="24" cy="2" r="26" fill="${l2}"/>
+  ${[[-18,-24],[12,-30],[22,-4],[-26,6],[0,-2],[30,14]].map(([a,b])=>`<circle cx="${a}" cy="${b}" r="6.5" fill="#F6A65B"/>`).join("")}</g>`}
 function clouds(op){return `<g fill="#fff" opacity="${op}"><g><ellipse cx="330" cy="40" rx="50" ry="16"/><ellipse cx="365" cy="30" rx="34" ry="18"/><ellipse cx="300" cy="32" rx="26" ry="14"/></g><g><ellipse cx="560" cy="70" rx="44" ry="13"/><ellipse cx="590" cy="60" rx="28" ry="15"/></g></g>`}
 function drawScene(){
   const ph=phaseMode==="auto"?phaseNow():phaseMode;
   const sky={
-    morning:["#5b4bb7","#a66fc4","#ff9fa8","#ffd08a"],
-    day:["#4f8fe8","#77b3f2","#a9d6fb","#d8f0ff"],
-    night:["#1a1250","#2b2273","#3b2f8f","#4b3fa3"]
+    morning:["#CDBDF2","#EBC5E0","#FFD3C4","#FFE8CC"],
+    day:["#B9D8F4","#CFE4F8","#E6F1FB","#FFF1EA"],
+    night:["#6F63AC","#8577BD","#A594D2","#C7B4E2"]
   }[ph];
   let extra="";
   if(ph==="morning"){
-    extra=`<circle cx="610" cy="214" r="62" fill="#ffe08a" opacity=".95"/><circle cx="610" cy="214" r="96" fill="#ffe08a" opacity=".22"/>`+clouds(.55);
+    extra=`<circle cx="610" cy="214" r="62" fill="#FFE2A8" opacity=".95"/><circle cx="610" cy="214" r="96" fill="#FFE2A8" opacity=".3"/>`+clouds(.55);
   }else if(ph==="day"){
-    extra=`<circle cx="470" cy="10" r="34" fill="#ffe27a"/><circle cx="470" cy="10" r="50" fill="#ffe27a" opacity=".3"/>`+clouds(.9);
+    extra=`<circle cx="470" cy="10" r="34" fill="#FFE2A8"/><circle cx="470" cy="10" r="50" fill="#FFE2A8" opacity=".35"/>`+clouds(.9);
   }else{
     let st="";let seed=7;const r=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
     for(let i=0;i<60;i++){st+=`<circle class="twinkle" style="animation-delay:${(r()*3).toFixed(2)}s" cx="${(r()*800).toFixed(0)}" cy="${(r()*250-80).toFixed(0)}" r="${(r()*1.6+.5).toFixed(1)}" fill="#fff"/>`}
-    extra=st+`<path d="M640 40 A30 30 0 1 0 676 82 A24 24 0 1 1 640 40Z" fill="#fff6c9"/><circle cx="650" cy="62" r="44" fill="#fff6c9" opacity=".08"/>`;
+    extra=st+`<path d="M640 40 A30 30 0 1 0 676 82 A24 24 0 1 1 640 40Z" fill="#FFF4D6"/><circle cx="650" cy="62" r="44" fill="#FFF4D6" opacity=".15"/>`;
   }
-  const g1=ph==="night"?"#2a4a6a":ph==="day"?"#7ccf8a":"#6fb48a",g2=ph==="night"?"#213b57":ph==="day"?"#63b874":"#5aa077";
-  const ground=`<path d="M0 214 Q200 186 400 204 T800 196 V260 H0Z" fill="${g1}"/><path d="M0 232 Q260 214 520 230 T800 226 V260 H0Z" fill="${g2}"/>`+mandarinTree(90,150)+flowers(ph==="night");
-  const capy=ph==="day"?capyTable(330,138):ph==="night"?capyOnsen(420,186):capyLying(380,186,false,true);
+  const g1=ph==="night"?"#9A9CCB":ph==="day"?"#BFE3C8":"#C6E3C4",g2=ph==="night"?"#8A8BBE":ph==="day"?"#A8D8B5":"#B1D9B6";
+  const ground=`<path d="M0 214 Q200 186 400 204 T800 196 V260 H0Z" fill="${g1}"/><path d="M0 232 Q260 214 520 230 T800 226 V260 H0Z" fill="${g2}"/>`+mandarinTree(90,150,ph==="night")+flowers(ph==="night");
+  const hero=ph==="day"?onigiriHero(330,138):ph==="night"?mandarinOnsen(420,186):eggHero(400,150);
+  $("#scene").classList.toggle("night",ph==="night");
   $("#sky").innerHTML=`<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="${sky[0]}"/><stop offset=".45" stop-color="${sky[1]}"/><stop offset=".8" stop-color="${sky[2]}"/><stop offset="1" stop-color="${sky[3]}"/></linearGradient></defs>
-    <rect y="-80" width="800" height="340" fill="url(#g)"/>${extra}${ground}<g id="capyHit">${capy}</g>`;
-  $("#capyHit").onclick=e=>{hearts(e.clientX,e.clientY);renderSay(true)};
+    <rect y="-80" width="800" height="340" fill="url(#g)"/>${extra}${ground}<g id="heroHit">${hero}</g>`;
+  $("#heroHit").onclick=e=>{hearts(e.clientX,e.clientY);renderSay(true)};
   const h=new Date().getHours();
   $("#greet").textContent=ph==="morning"?"Доброе утро ☀️":ph==="day"?"Время обеда 🍜":"Добрый вечер ✨";
   const m=menuFor(todayISO());
@@ -351,28 +367,28 @@ document.querySelectorAll(".phase button").forEach(b=>b.onclick=()=>{phaseMode=b
 
 /* ---------- stickers ---------- */
 const STK={
- mandarin:`<circle cx="32" cy="36" r="20" fill="#ff9a3c"/><circle cx="25" cy="30" r="5" fill="#ffc27a"/><path d="M32 16 q8 -10 16 -4 q-6 8 -16 4z" fill="#3fae6a"/>`,
- onigiri:`<path d="M32 10 Q40 10 52 40 Q56 52 44 52 H20 Q8 52 12 40 Q24 10 32 10z" fill="#fbf8f2"/><rect x="22" y="38" width="20" height="14" rx="2" fill="#24323f"/><circle cx="27" cy="31" r="2" fill="#2a1a10"/><circle cx="37" cy="31" r="2" fill="#2a1a10"/><path d="M29 35 q3 3 6 0" stroke="#2a1a10" stroke-width="2" fill="none"/>`,
- tea:`<rect x="14" y="26" width="30" height="24" rx="8" fill="#b3c0ff"/><path d="M44 31 q10 0 8 8 q-2 6 -8 5" stroke="#b3c0ff" stroke-width="5" fill="none"/><path d="M24 20 q-4 -6 0 -12M33 20 q-4 -6 0 -12" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>`,
- jar:`<rect x="16" y="22" width="32" height="32" rx="8" fill="#ff8f9a"/><rect x="18" y="14" width="28" height="10" rx="3" fill="#ffd27a"/><rect x="22" y="32" width="20" height="10" rx="3" fill="#fff" opacity=".85"/>`,
- star:`<path d="M32 8 L39 24 L56 25 L43 36 L47 53 L32 44 L17 53 L21 36 L8 25 L25 24Z" fill="#ffd27a"/>`,
- heart:`<path d="M32 54 C10 38 8 24 18 17 C26 12 32 20 32 20 C32 20 38 12 46 17 C56 24 54 38 32 54Z" fill="#ff8f9a"/>`,
- leaf:`<path d="M12 50 C12 24 30 12 54 12 C54 36 40 52 12 50Z" fill="#7fe0b8"/><path d="M14 48 L44 22" stroke="#3fae6a" stroke-width="3"/>`,
- egg:`<path d="M10 34 C8 18 26 12 36 16 C50 10 58 26 52 36 C56 50 36 56 26 50 C14 54 6 44 10 34Z" fill="#fbf8f2"/><circle cx="32" cy="33" r="10" fill="#ffc23a"/>`,
- shrimp:`<path d="M46 18 C30 8 12 20 16 36 C20 50 38 54 46 44" stroke="#ff9e7a" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="44" cy="20" r="2.5" fill="#2a1a10"/>`,
- moon:`<path d="M40 10 A22 22 0 1 0 54 44 A18 18 0 1 1 40 10Z" fill="#f4f1d0"/>`,
- drop:`<path d="M32 8 C42 24 50 32 50 40 A18 18 0 0 1 14 40 C14 32 22 24 32 8Z" fill="#8fd0ff"/><circle cx="25" cy="40" r="4" fill="#fff" opacity=".7"/>`,
- capy:`<rect x="8" y="14" width="48" height="40" rx="18" fill="#b07a52"/><rect x="30" y="22" width="26" height="28" rx="12" fill="#9c6a45"/><ellipse cx="16" cy="16" rx="6" ry="5" fill="#8a5c3c"/><circle cx="24" cy="30" r="3.5" fill="#2a1a10"/><ellipse cx="50" cy="32" rx="2.5" ry="2" fill="#3a2418"/><ellipse cx="22" cy="42" rx="5" ry="3" fill="#e8907a" opacity=".6"/>`,
- basket:`<path d="M10 28 H54 L48 52 H16Z" fill="#c9a27a"/><path d="M20 28 Q32 6 44 28" stroke="#c9a27a" stroke-width="5" fill="none"/><circle cx="26" cy="24" r="6" fill="#ff8f9a"/><circle cx="38" cy="24" r="6" fill="#7fe0b8"/>`,
- dumbbell:`<rect x="6" y="20" width="10" height="24" rx="3" fill="#b3c0ff"/><rect x="48" y="20" width="10" height="24" rx="3" fill="#b3c0ff"/><rect x="14" y="26" width="6" height="12" rx="2" fill="#8a9be8"/><rect x="44" y="26" width="6" height="12" rx="2" fill="#8a9be8"/><rect x="20" y="29" width="24" height="6" rx="3" fill="#dfe5ff"/>`,
- coin:`<circle cx="32" cy="32" r="22" fill="#ffd27a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#e8b64a" stroke-width="3"/><text x="32" y="39" text-anchor="middle" font-size="20" font-weight="800" fill="#b5852a">¥</text>`
+ mandarin:`<circle cx="32" cy="36" r="20" fill="#F6A65B"/><circle cx="25" cy="30" r="5" fill="#FFC98F"/><path d="M32 16 q8 -10 16 -4 q-6 8 -16 4z" fill="#88C49B"/>`,
+ onigiri:`<path d="M32 10 Q40 10 52 40 Q56 52 44 52 H20 Q8 52 12 40 Q24 10 32 10z" fill="#FFFDF8"/><rect x="22" y="38" width="20" height="14" rx="2" fill="#4E5B6E"/><circle cx="27" cy="31" r="2" fill="#4A3B55"/><circle cx="37" cy="31" r="2" fill="#4A3B55"/><path d="M29 35 q3 3 6 0" stroke="#4A3B55" stroke-width="2" fill="none"/>`,
+ tea:`<rect x="14" y="26" width="30" height="24" rx="8" fill="#B9A7E3"/><path d="M44 31 q10 0 8 8 q-2 6 -8 5" stroke="#B9A7E3" stroke-width="5" fill="none"/><path d="M24 20 q-4 -6 0 -12M33 20 q-4 -6 0 -12" stroke="#D7C9F2" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+ jar:`<rect x="16" y="22" width="32" height="32" rx="8" fill="#F2A7BE"/><rect x="18" y="14" width="28" height="10" rx="3" fill="#F5D38A"/><rect x="22" y="32" width="20" height="10" rx="3" fill="#fff" opacity=".85"/>`,
+ star:`<path d="M32 8 L39 24 L56 25 L43 36 L47 53 L32 44 L17 53 L21 36 L8 25 L25 24Z" fill="#F5D38A"/>`,
+ heart:`<path d="M32 54 C10 38 8 24 18 17 C26 12 32 20 32 20 C32 20 38 12 46 17 C56 24 54 38 32 54Z" fill="#F2A7BE"/>`,
+ leaf:`<path d="M12 50 C12 24 30 12 54 12 C54 36 40 52 12 50Z" fill="#9ED4BC"/><path d="M14 48 L44 22" stroke="#6FB38F" stroke-width="3"/>`,
+ egg:`<path d="M10 34 C8 18 26 12 36 16 C50 10 58 26 52 36 C56 50 36 56 26 50 C14 54 6 44 10 34Z" fill="#FFFDF8"/><circle cx="32" cy="33" r="10" fill="#F8C25C"/>`,
+ shrimp:`<path d="M46 18 C30 8 12 20 16 36 C20 50 38 54 46 44" stroke="#F2A488" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="44" cy="20" r="2.5" fill="#4A3B55"/>`,
+ moon:`<path d="M40 10 A22 22 0 1 0 54 44 A18 18 0 1 1 40 10Z" fill="#F8E7B0"/>`,
+ drop:`<path d="M32 8 C42 24 50 32 50 40 A18 18 0 0 1 14 40 C14 32 22 24 32 8Z" fill="#A9CDEF"/><circle cx="25" cy="40" r="4" fill="#fff" opacity=".7"/>`,
+ capy:`<path d="M10 40 C10 24 20 16 32 16 C44 16 54 24 54 40 C54 50 44 54 32 54 C20 54 10 50 10 40Z" fill="#FFF7EE"/><path d="M26 18 q6 -8 12 0" stroke="#EADBD0" stroke-width="3" fill="none"/><circle cx="25" cy="38" r="2.6" fill="#4A3B55"/><circle cx="39" cy="38" r="2.6" fill="#4A3B55"/><path d="M29 43 q3 3 6 0" stroke="#4A3B55" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="19" cy="43" rx="4" ry="2.5" fill="#F7A8B8"/><ellipse cx="45" cy="43" rx="4" ry="2.5" fill="#F7A8B8"/>`,
+ basket:`<path d="M10 28 H54 L48 52 H16Z" fill="#E7C3A6"/><path d="M20 28 Q32 6 44 28" stroke="#E7C3A6" stroke-width="5" fill="none"/><circle cx="26" cy="24" r="6" fill="#F2A7BE"/><circle cx="38" cy="24" r="6" fill="#9ED4BC"/>`,
+ dumbbell:`<rect x="6" y="20" width="10" height="24" rx="3" fill="#B9A7E3"/><rect x="48" y="20" width="10" height="24" rx="3" fill="#B9A7E3"/><rect x="14" y="26" width="6" height="12" rx="2" fill="#9C88D6"/><rect x="44" y="26" width="6" height="12" rx="2" fill="#9C88D6"/><rect x="20" y="29" width="24" height="6" rx="3" fill="#E7DDF7"/>`,
+ coin:`<circle cx="32" cy="32" r="22" fill="#F5D38A"/><circle cx="32" cy="32" r="16" fill="none" stroke="#E3B04B" stroke-width="3"/><text x="32" y="39" text-anchor="middle" font-size="20" font-weight="800" fill="#A9741A">¥</text>`
 };
 const STKN=Object.keys(STK);
 function sticker(n,size=28,rot){const r=rot??((n.charCodeAt(0)%3)-1)*7;return `<svg class="stk" style="--r:${r}deg" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true"><g stroke="#fff" stroke-width="5" stroke-linejoin="round" paint-order="stroke">${STK[n]||""}</g></svg>`}
-function burst(x,y,n=9){const set=["🍊","✨","💛","⭐","🌸","🫶","🍙","🥟"];for(let i=0;i<n;i++){const e=document.createElement("span");e.className="fly";e.textContent=set[i%set.length];
+function burst(x,y,n=9){const set=["🍊","✨","🧡","⭐","🌸","🫶","🍙","🥚"];for(let i=0;i<n;i++){const e=document.createElement("span");e.className="fly";e.textContent=set[i%set.length];
   const a=Math.random()*Math.PI*2,d=50+Math.random()*60;e.style.left=x+"px";e.style.top=y+"px";e.style.setProperty("--dx",Math.cos(a)*d+"px");e.style.setProperty("--dy",(Math.sin(a)*d-30)+"px");e.style.setProperty("--rot",(Math.random()*120-60)+"deg");
   document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
-function hearts(x,y){for(let i=0;i<5;i++){const e=document.createElement("span");e.className="fly";e.textContent=["💗","🤎","💕"][i%3];e.style.left=(x+Math.random()*30-15)+"px";e.style.top=y+"px";
+function hearts(x,y){for(let i=0;i<5;i++){const e=document.createElement("span");e.className="fly";e.textContent=["🧡","💜","💕"][i%3];e.style.left=(x+Math.random()*30-15)+"px";e.style.top=y+"px";
   e.style.setProperty("--dx",(Math.random()*40-20)+"px");e.style.setProperty("--dy",(-60-Math.random()*50)+"px");e.style.setProperty("--rot","0deg");e.style.animationDelay=(i*0.08)+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),1500)}}
 
 /* ---------- reminders ---------- */
@@ -405,11 +421,11 @@ function reminders(){
   if(!tdays.length)out.push(["dumbbell","Выбери дни тренировок на вкладке «Сегодня», и я буду напоминать 💪"]);
   const b=budgetInfo();out.push(["coin",b.pace>1.1?"Бюджет разогнался: на этой неделе больше готовим дома 🏡":"Бюджет в порядке: осталось "+yuan(b.rest)+" 💴"]);
   const sh=S.shopping.filter(x=>!x.done).length;if(sh)out.push(["basket","В списке покупок "+sh+" поз. Загляни перед заказом 🛒"]);
-  out.push(["heart","Ты молодец, что готовишь сама ✨"],["capy","Капибара верит в тебя. Ты всё успеешь 🫶"],["star","Маленькая прогулка после ужина? 🌙"]);
+  out.push(["heart","Ты молодец, что готовишь сама ✨"],["capy","Ты всё успеешь, по шагу за раз 🫶"],["star","Маленькая прогулка после ужина? 🌙"]);
   return out;
 }
 function renderSay(step){const r=reminders();if(step)sayIdx=(sayIdx+1)%r.length;if(sayIdx>=r.length)sayIdx=0;const [st,txt]=r[sayIdx];
-  const el=$("#say");el.innerHTML=sticker(st,38)+`<span>${esc(txt)}<small>капибара напоминает · нажми, чтобы дальше (${sayIdx+1}/${r.length})</small></span>`;
+  const el=$("#say");el.innerHTML=sticker(st,38)+`<span>${esc(txt)}<small>напоминалка · нажми, чтобы дальше (${sayIdx+1}/${r.length})</small></span>`;
   if(step){el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop")}}
 $("#say").onclick=()=>renderSay(true);
 
@@ -479,12 +495,12 @@ function renderToday(){
   <div class="grid2">
     <div class="card"><h2>Водичка сегодня ${sticker("drop",26)}</h2>
       <div class="cups">${Array.from({length:8},(_,i)=>`<button class="cup" data-cup="${i+1}" aria-label="Стакан ${i+1}">
-        <svg width="34" height="40" viewBox="0 0 34 40"><path d="M4 4 H30 L26 36 H8Z" fill="${i<water?"#8fd0ff":"none"}" stroke="#b3c0ff" stroke-width="2.5" stroke-linejoin="round"/>${i<water?`<circle cx="13" cy="16" r="2" fill="#fff" opacity=".8"/>`:""}</svg></button>`).join("")}</div>
-      <p class="muted small" style="margin:8px 0 0">${water>=8?"Все стаканчики выпиты, капибара гордится 💙":water?"Выпито "+water+" из 8, так держать":"Нажми на стаканчик, когда выпьешь воды"}</p></div>
+        <svg width="34" height="40" viewBox="0 0 34 40"><path d="M4 4 H30 L26 36 H8Z" fill="${i<water?"#A9CDEF":"#fff"}" stroke="#B9A7E3" stroke-width="2.5" stroke-linejoin="round"/>${i<water?`<circle cx="13" cy="16" r="2" fill="#fff" opacity=".8"/>`:""}</svg></button>`).join("")}</div>
+      <p class="muted small" style="margin:8px 0 0">${water>=8?"Все стаканчики выпиты, ты умничка 🧡":water?"Выпито "+water+" из 8, так держать":"Нажми на стаканчик, когда выпьешь воды"}</p></div>
     ${trainingCard()}
     <div class="card"><h2>Наклейки недели ${sticker("star",26)}</h2>
       <div class="book">${Array.from({length:14},(_,i)=>i<wk?`<div title="наклейка">${sticker(STKN[(i*5)%STKN.length],40)}</div>`:`<div class="slotk" aria-hidden="true"></div>`).join("")}</div>
-      <p class="muted small" style="margin:8px 0 0">За каждое приготовленное дома блюдо капибара дарит наклейку. На этой неделе: ${wk}</p></div>
+      <p class="muted small" style="margin:8px 0 0">За каждое приготовленное дома блюдо тебе наклейка. На этой неделе: ${wk}</p></div>
   </div>`;
   bindTraining();
   document.querySelectorAll("[data-cup]").forEach(c=>c.onclick=async e=>{const n=+c.dataset.cup;const v=n===water?n-1:n;if(v>water)burst(e.clientX,e.clientY,5);await put("daily",todayISO(),{...S.daily,water:v});});
@@ -492,12 +508,12 @@ function renderToday(){
 }
 function budgetRing(b){
   const pct=Math.min(1,b.spent/b.B);const R=44,C=2*Math.PI*R;
-  const col=b.pace>1.1?"var(--bad)":b.pace>0.95?"var(--warn)":"var(--good)";
+  const col=b.pace>1.1?"#F2A7BE":b.pace>0.95?"#F5D38A":"#9ED4BC";
   const msg=b.pace>1.1?"тратим быстрее плана":b.pace>0.95?"идём ровно по плану, без запаса":"укладываемся";
   return `<div class="ring"><svg width="110" height="110" viewBox="0 0 110 110" aria-hidden="true">
-    <circle cx="55" cy="55" r="${R}" fill="none" stroke="#1d2d5c" stroke-width="12"/>
+    <circle cx="55" cy="55" r="${R}" fill="none" stroke="#F3E9E6" stroke-width="12"/>
     <circle cx="55" cy="55" r="${R}" fill="none" stroke="${col}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${(C*pct).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 55 55)"/>
-    <text x="55" y="60" text-anchor="middle" fill="#e9edff" font-family="Comfortaa" font-weight="700" font-size="17">${Math.round(pct*100)}%</text></svg>
+    <text x="55" y="60" text-anchor="middle" fill="#3F3550" font-family="Comfortaa" font-weight="700" font-size="17">${Math.round(pct*100)}%</text></svg>
     <div><div class="num" style="font-family:var(--display);font-size:1.3rem">${yuan(b.spent)}</div><div class="muted small">потрачено из ${yuan(b.B)}</div>
     <span class="pill ${b.pace>1.1?"p-bad":b.pace>0.95?"p-warn":"p-good"}" style="margin-top:6px">${msg}</span></div></div>`;
 }
@@ -509,7 +525,7 @@ function trainingCard(){
    ${days.length?(today?`<div class="item ${S.daily.trained?"done":""}"><button class="check" role="checkbox" aria-checked="${!!S.daily.trained}" id="trDone" aria-label="Тренировка сделана"></button>
      <div class="grow"><b>Сегодня тренировка${tr.time?" в "+esc(tr.time):""}</b>${tr.note?`<div class="muted small">${esc(tr.note)}</div>`:""}</div></div>`
      :`<p class="small" style="margin:0">Сегодня отдых 🛋 Следующая тренировка: <b>${esc(next)}</b>${tr.time?" в "+esc(tr.time):""}</p>`)
-     :`<p class="muted small" style="margin:0">Выбери дни, и капибара будет напоминать с утра и накануне вечером.</p>`}
+     :`<p class="muted small" style="margin:0">Выбери дни, и я буду напоминать с утра и накануне вечером.</p>`}
    <details style="margin-top:10px"${days.length?"":" open"}><summary class="small" style="cursor:pointer;color:var(--lav)">Настроить дни и время</summary>
     <form id="fTr" class="form" style="margin-top:8px"><div class="row">${[1,2,3,4,5,6,0].map(d=>`<label class="row small" style="gap:4px;color:var(--ink)"><input type="checkbox" name="trd" value="${d}" ${days.includes(d)?"checked":""}>${WDN[d]}</label>`).join("")}</div>
      <div class="row"><label class="small" for="trTime">Время</label><input id="trTime" type="time" value="${esc(tr.time||"07:30")}">
@@ -686,7 +702,7 @@ function renderSmart(){
   $("#p-smart").innerHTML=`
   <div class="card"><div class="row between"><h2>Меню на день из запасов ${sticker("leaf",26)}</h2>
     <div class="seg" role="group" aria-label="Режим"><button data-gentle="0" aria-pressed="${!smartGentle}">обычное</button><button data-gentle="1" aria-pressed="${smartGentle}">щадящее</button></div></div>
-   <p class="muted small" style="margin:4px 0 10px">Капибара выбирает рецепты, для которых больше всего есть дома, и в первую очередь использует то, что скоро испортится (жёлтая обводка).</p>
+   <p class="muted small" style="margin:4px 0 10px">Подбор берёт рецепты, для которых больше всего есть дома, и в первую очередь использует то, что скоро испортится (жёлтая обводка).</p>
    <div class="list">${plan.map(([slot,a])=>`<div class="meal"><div class="slot">${slot}</div><div class="grow"><button class="link" data-rec="${esc(a.r.id)}">${esc(a.r.title)}</button>
      <div class="meter"><i style="width:${Math.round(a.cov*100)}%"></i></div><div>${ingChips(a)}</div></div></div>`).join("")||`<div class="empty">Нет подходящих рецептов${smartGentle?" с тегом «щадящее»":""}.</div>`}</div>
    ${plan.length?`<div class="row" style="margin-top:10px"><button class="btn" id="shuffle">🔀 Другой вариант</button>${dates.map(([d,l])=>`<button class="btn acc" data-saveplan="${d}">Сохранить в меню на ${l}</button>`).join("")}
@@ -698,7 +714,7 @@ function renderSmart(){
    ${recs.length>1?`<div style="margin-top:10px"><button class="btn acc" id="addAllRec">Добавить всё в покупки</button></div>`:""}</div>
   <div class="card"><h2>Скоро испортится: что из этого приготовить ${sticker("jar",26)}</h2>
    <div class="list">${urgent.map(({p,best})=>`<div class="item urgent"><div class="grow"><b>${esc(p.name)}</b> ${pantryBadge(p)}
-     <div class="small">${best?`→ <button class="link" data-rec="${esc(best.r.id)}">${esc(best.r.title)}</button> <span class="muted">(есть ${best.have.length} из ${best.have.length+best.miss.length})</span>`:`<span class="muted">подходящего рецепта нет, попроси капибару придумать</span>`}</div></div></div>`).join("")||`<div class="empty">Всё свежее 🌿</div>`}</div></div>
+     <div class="small">${best?`→ <button class="link" data-rec="${esc(best.r.id)}">${esc(best.r.title)}</button> <span class="muted">(есть ${best.have.length} из ${best.have.length+best.miss.length})</span>`:`<span class="muted">подходящего рецепта нет, можно спросить у Claude</span>`}</div></div></div>`).join("")||`<div class="empty">Всё свежее 🌿</div>`}</div></div>
   <div class="card"><h2>Что можно приготовить сейчас ${sticker("onigiri",26)}</h2>
    <div class="list">${all.slice(0,12).map(a=>`<div class="item"><div class="grow"><button class="link" data-rec="${esc(a.r.id)}">${esc(a.r.title)}</button>
      <span class="pill ${a.miss.length?"p-warn":"p-good"}">${a.miss.length?"не хватает "+a.miss.length:"всё есть"}</span>
