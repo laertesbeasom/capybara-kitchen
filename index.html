@@ -171,6 +171,16 @@ body{background-image:
 .tabs button[data-t="budget"][aria-selected="true"]{background:#c8b6ff;border-color:#c8b6ff}
 .tabs button[data-t="preserves"][aria-selected="true"]{background:#ff9fbf;border-color:#ff9fbf}
 .tabs button[data-t="recipes"][aria-selected="true"]{background:#ffe3a3;border-color:#ffe3a3}
+.tabs button[data-t="smart"][aria-selected="true"]{background:#7fe0b8;border-color:#7fe0b8}
+.ing{display:inline-block;border-radius:999px;padding:1px 9px;margin:2px 4px 2px 0;font-size:.8rem;font-weight:700}
+.ing.ok{background:rgba(127,224,184,.16);color:var(--good)}
+.ing.no{background:rgba(255,143,154,.16);color:var(--bad)}
+.ing.exp{box-shadow:inset 0 0 0 1.5px var(--warn)}
+.meter{height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,#7fe0b8,#ffd27a)}
+.seg{display:inline-flex;gap:4px;background:rgba(255,255,255,.07);padding:3px;border-radius:999px}
+.seg button{border:0;background:none;border-radius:999px;padding:4px 11px;cursor:pointer;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:#7fe0b8;color:#10261c}
 .chip{background:var(--panel);border-top:4px solid var(--acc,#b3c0ff)}
 .chips .chip:nth-child(1){--acc:#7fe0b8}.chips .chip:nth-child(2){--acc:#ff9fbf}.chips .chip:nth-child(3){--acc:#8fd0ff}.chips .chip:nth-child(4){--acc:#ffd27a}
 .chip b{color:var(--acc,#e9edff)}
@@ -206,6 +216,7 @@ body{background-image:
     <button role="tab" data-t="budget" aria-selected="false">💴 Бюджет</button>
     <button role="tab" data-t="preserves" aria-selected="false">🫙 Заготовки</button>
     <button role="tab" data-t="recipes" aria-selected="false">📖 Рецепты</button>
+    <button role="tab" data-t="smart" aria-selected="false">✨ Подбор</button>
   </div>
 
   <section class="panel on" id="p-today"></section>
@@ -215,6 +226,7 @@ body{background-image:
   <section class="panel" id="p-budget"></section>
   <section class="panel" id="p-preserves"></section>
   <section class="panel" id="p-recipes"></section>
+  <section class="panel" id="p-smart"></section>
 </div>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
@@ -374,7 +386,7 @@ function reminders(){
       out.push(["jar",p.recipe==="r-kefir"?"Кефир готов! Процеди и залей гриб свежим молоком 🥛":p.name+": пора пробовать, похоже, готово 🫙"]);
     if(p.status==="план"&&p.plan&&p.plan.includes(dm))out.push(["jar","Сегодня по плану заготовка: "+p.name+" ✨"]);
   });
-  urgentPantry().slice(0,2).forEach(p=>out.push(["leaf",p.name+" ждёт своей очереди, пустим в дело? 🌿"]));
+  urgentPantry().slice(0,2).forEach(p=>out.push(["leaf",p.name+" ждёт своей очереди, загляни во вкладку «✨ Подбор» 🌿"]));
   if(ph==="morning"){out.unshift(["drop","Доброе утро! Стакан тёплой воды, и потом завтрак 💧"]);
     const b=td&&td.meals.find(m=>m.slot==="Завтрак");if(b)out.splice(1,0,["egg","На завтрак сегодня: "+b.title+" 🍳"]);}
   if(ph==="day"){const l=td&&td.meals.find(m=>m.slot==="Обед");if(l)out.unshift(["onigiri","Приятного обеда! Сегодня: "+l.title+" 🍱"]);out.push(["tea","Чайная пауза? Можно заварить чай с 陈皮 🍵"]);}
@@ -624,6 +636,88 @@ function openRecipe(id){
   $("#xR").onclick=closeModal;
 }
 
+/* ---------- smart: подбор по запасам ---------- */
+const STOP=new Set("вчерашний вчерашнего свежий свежая свежие тонко нарезанная нарезанный очищенных очищенные крупные крупный мелкие мелко отварная отварной тёплая теплая горячая холодная по желанию или и с со для на без горсть ложка ложки щепотка ст ч л шт г кг мл чашки чашка банка уп пачка кусочек кусочка половина зубчик зубчика зубчиков без кожи комнатной температуры тёртый тертый молотый целый".split(" "));
+const STAPLE=["сол","вод","кипят","спец","лед"];
+const tok=s=>String(s||"").toLowerCase().replace(/ё/g,"е").replace(/\([^)]*\)/g," ").replace(/[0-9≈~½¼¾⅓–—\-\/.,:;×+%°]+/g," ").split(/\s+/).filter(w=>w.length>=3&&!STOP.has(w));
+const stem=w=>{const b=w.replace(/[аяыиеоуюйь]+$/,"");return b.length>=2?b.slice(0,4):w.slice(0,2)};
+const ADJ=/(ый|ий|ой|ая|яя|ое|ее|ые|ие|ого|его|ому|ему|ую|юю|ым|им|ых|их)$/;
+const isAdj=w=>w.length>=5&&ADJ.test(w);
+const cyr=w=>/[а-я]/.test(w);
+function ingAlts(text){const main=String(text||"").split(/,\s|[(:]/)[0];const parts=main.split(/\s+или\s+/i).map(a=>tok(a).filter(cyr));
+  const lastNoun=(parts[parts.length-1]||[]).filter(w=>!isAdj(w)).pop();
+  return parts.map(a=>{let t=a.slice(0,2);if(t.length&&t.every(isAdj)&&lastNoun)t=[t[0],lastNoun];
+    return{nouns:t.filter(w=>!isAdj(w)).map(stem),adjs:t.filter(isAdj).map(stem)}}).filter(a=>a.nouns.length||a.adjs.length)}
+function isStaple(text){const main=String(text||"").split(/,\s|[(:]/)[0];return main.split(/\s+или\s+/i).some(a=>{const t=tok(a);return t.length&&STAPLE.some(x=>t[0].startsWith(x))})}
+function matchItem(text,list){const alts=ingAlts(text);if(!alts.length)return null;
+  for(const p of list){const pt=tok(p.name).filter(cyr);const ps=new Set(pt.map(stem));const padj=pt.filter(isAdj).map(stem);
+    for(const a of alts){const core=a.nouns.length?a.nouns:a.adjs;if(!core.every(x=>ps.has(x)))continue;
+      const unmatchedAdj=a.adjs.some(x=>!ps.has(x));const used=new Set([...a.nouns,...a.adjs]);const foreignAdj=pt.map(stem).some(x=>!used.has(x));
+      if(unmatchedAdj&&foreignAdj)continue;return p}}return null}
+function cleanIng(text){const main0=String(text).split(/,\s/)[0].replace(/\([^)]*\)/g,"").trim();
+  const lead=main0.match(/^([≈~]?\s*[\d½¼¾⅓][\d.,–\-]*\s*(г|кг|мл|л|шт\.?|ст\. л\.|ч\. л\.)?)\s+(.+)$/i);if(lead)return{name:lead[3].trim(),qty:lead[1].trim()};
+  const main=main0;const m=main.match(/^(.*?)(\s*[≈~]?\s*[\d½¼¾⅓][\d.,–\-]*\s*(г|кг|мл|л|шт\.?|ст\. л\.|ч\. л\.)?)$/i);
+  return m?{name:m[1].trim(),qty:m[2].trim()}:{name:main,qty:""}}
+function analyze(r){const ings=(r.ingredients||[]);let have=[],miss=[],exp=0;
+  ings.forEach(t=>{if(isStaple(t)){have.push({t,p:null});return}const p=matchItem(t,S.pantry);if(p){const l=pantryLeft(p);const e=p.eatFirst||(l!==null&&l<=2);if(e)exp++;have.push({t,p,e})}else miss.push({t})});
+  const total=have.length+miss.length||1;return{r,have,miss,exp,cov:have.length/total}}
+let smartGentle=(()=>{try{return localStorage.getItem("capy.gentle")==="1"}catch(e){return false}})();
+let smartPick=0;
+function eligible(r){const tags=(r.tags||[]).map(x=>String(x).toLowerCase());
+  if(tags.some(t=>t.includes("заготовка")||t.includes("ферментац")))return false;
+  if(smartGentle&&!tags.some(t=>t.includes("щадящ")))return false;return true}
+function slotOf(r){const tags=(r.tags||[]).join(" ").toLowerCase();return tags.includes("завтрак")?"Завтрак":tags.includes("перекус")?"Перекус":"Основное"}
+function score(a){return a.cov*100+a.exp*15-a.miss.length*8}
+function dayPlan(){const list=S.recipes.filter(eligible).map(analyze).sort((x,y)=>score(y)-score(x));
+  const pick=(arr,k)=>arr.length?arr[(smartPick+k)%Math.min(arr.length,3)]:null;
+  const br=list.filter(a=>slotOf(a.r)==="Завтрак");const main=list.filter(a=>slotOf(a.r)==="Основное");
+  const b=pick(br.length?br:main,0);const l=pick(main.filter(a=>!b||a.r.id!==b.r.id),1);const d=pick(main.filter(a=>(!b||a.r.id!==b.r.id)&&(!l||a.r.id!==l.r.id)),2);
+  return [["Завтрак",b],["Обед",l],["Ужин",d]].filter(x=>x[1])}
+function upcomingMissing(){const t=todayISO();const end=iso(new Date(Date.now()+3*864e5));const open=S.shopping.filter(x=>!x.done);const out=new Map();
+  S.menu.filter(m=>m.id>=t&&m.id<=end).forEach(m=>(m.meals||[]).filter(x=>!x.done&&x.recipe).forEach(x=>{const r=S.recipes.find(y=>y.id===x.recipe);if(!r)return;
+    analyze(r).miss.forEach(({t:txt})=>{if(matchItem(txt,open))return;const c=cleanIng(txt);const k=c.name.toLowerCase();if(!out.has(k))out.set(k,{...c,for:new Set()});out.get(k).for.add(r.title)})}));
+  return [...out.values()]}
+function ingChips(a){return a.have.filter(h=>h.p).map(h=>`<span class="ing ok ${h.e?"exp":""}" title="${esc(h.t)}">✓ ${esc(h.p.name)}</span>`).join("")+a.miss.map(m=>`<span class="ing no">✗ ${esc(cleanIng(m.t).name)}</span>`).join("")}
+function renderSmart(){
+  const all=S.recipes.filter(eligible).map(analyze).sort((x,y)=>score(y)-score(x));
+  const plan=dayPlan();const recs=upcomingMissing();
+  const tm=new Date();tm.setDate(tm.getDate()+1);const dates=[[todayISO(),"сегодня"],[iso(tm),"завтра"]];
+  const urgent=urgentPantry().slice(0,6).map(p=>{const best=S.recipes.filter(eligible).map(analyze).filter(a=>a.have.some(h=>h.p&&h.p.id===p.id)).sort((x,y)=>score(y)-score(x))[0];return{p,best}});
+  $("#p-smart").innerHTML=`
+  <div class="card"><div class="row between"><h2>Меню на день из запасов ${sticker("leaf",26)}</h2>
+    <div class="seg" role="group" aria-label="Режим"><button data-gentle="0" aria-pressed="${!smartGentle}">обычное</button><button data-gentle="1" aria-pressed="${smartGentle}">щадящее</button></div></div>
+   <p class="muted small" style="margin:4px 0 10px">Капибара выбирает рецепты, для которых больше всего есть дома, и в первую очередь использует то, что скоро испортится (жёлтая обводка).</p>
+   <div class="list">${plan.map(([slot,a])=>`<div class="meal"><div class="slot">${slot}</div><div class="grow"><button class="link" data-rec="${esc(a.r.id)}">${esc(a.r.title)}</button>
+     <div class="meter"><i style="width:${Math.round(a.cov*100)}%"></i></div><div>${ingChips(a)}</div></div></div>`).join("")||`<div class="empty">Нет подходящих рецептов${smartGentle?" с тегом «щадящее»":""}.</div>`}</div>
+   ${plan.length?`<div class="row" style="margin-top:10px"><button class="btn" id="shuffle">🔀 Другой вариант</button>${dates.map(([d,l])=>`<button class="btn acc" data-saveplan="${d}">Сохранить в меню на ${l}</button>`).join("")}
+     <button class="btn ghost" id="planMiss">🛒 Недостающее в покупки</button></div>`:""}</div>
+  <div class="card"><h2>Рекомендации к покупке ${sticker("basket",26)}</h2>
+   <p class="muted small" style="margin:4px 0 10px">Чего не хватает для блюд из меню на ближайшие 3 дня (уже учтено, что есть дома и что уже в списке).</p>
+   <div class="list">${recs.map((x,i)=>`<div class="item"><div class="grow"><b>${esc(x.name)}</b> <span class="muted small">${esc(x.qty)}</span><div class="muted small">для: ${esc([...x.for].join(", "))}</div></div>
+     <button class="btn tiny" data-addrec="${i}">+ в список</button></div>`).join("")||`<div class="empty">Для запланированных блюд всё есть 🎉</div>`}</div>
+   ${recs.length>1?`<div style="margin-top:10px"><button class="btn acc" id="addAllRec">Добавить всё в покупки</button></div>`:""}</div>
+  <div class="card"><h2>Скоро испортится: что из этого приготовить ${sticker("jar",26)}</h2>
+   <div class="list">${urgent.map(({p,best})=>`<div class="item urgent"><div class="grow"><b>${esc(p.name)}</b> ${pantryBadge(p)}
+     <div class="small">${best?`→ <button class="link" data-rec="${esc(best.r.id)}">${esc(best.r.title)}</button> <span class="muted">(есть ${best.have.length} из ${best.have.length+best.miss.length})</span>`:`<span class="muted">подходящего рецепта нет, попроси капибару придумать</span>`}</div></div></div>`).join("")||`<div class="empty">Всё свежее 🌿</div>`}</div></div>
+  <div class="card"><h2>Что можно приготовить сейчас ${sticker("onigiri",26)}</h2>
+   <div class="list">${all.slice(0,12).map(a=>`<div class="item"><div class="grow"><button class="link" data-rec="${esc(a.r.id)}">${esc(a.r.title)}</button>
+     <span class="pill ${a.miss.length?"p-warn":"p-good"}">${a.miss.length?"не хватает "+a.miss.length:"всё есть"}</span>
+     <div class="meter"><i style="width:${Math.round(a.cov*100)}%"></i></div><div>${ingChips(a)}</div></div>
+     ${a.miss.length?`<button class="btn tiny" data-recmiss="${esc(a.r.id)}">🛒</button>`:""}</div>`).join("")}</div></div>`;
+  document.querySelectorAll("[data-gentle]").forEach(b=>b.onclick=()=>{smartGentle=b.dataset.gentle==="1";try{localStorage.setItem("capy.gentle",smartGentle?"1":"0")}catch(e){}smartPick=0;renderSmart()});
+  const sh=$("#shuffle");if(sh)sh.onclick=()=>{smartPick++;renderSmart()};
+  document.querySelectorAll("[data-saveplan]").forEach(b=>b.onclick=async e=>{const d=b.dataset.saveplan;const ex=menuFor(d);const keep=ex?(ex.meals||[]).filter(m=>!["Завтрак","Обед","Ужин"].includes(m.slot)):[];
+    const meals=plan.map(([slot,a])=>({slot,title:a.r.title,recipe:a.r.id,note:a.miss.length?"докупить: "+a.miss.map(m=>cleanIng(m.t).name).join(", "):"",done:false})).concat(keep);
+    burst(e.clientX,e.clientY);await put("menu",d,{meals});status("Меню сохранено ✨");setTimeout(()=>status(""),2500)});
+  const addMiss=async list=>{for(const x of list){await put("shopping",uid(),{name:x.name,qty:x.qty||"",price:null,where:"Доставка",done:false,note:x.note||""})}};
+  const pm=$("#planMiss");if(pm)pm.onclick=async e=>{const open=S.shopping.filter(x=>!x.done);const seen=new Set();const l=[];plan.forEach(([,a])=>a.miss.forEach(m=>{if(matchItem(m.t,open))return;const c=cleanIng(m.t);if(seen.has(c.name))return;seen.add(c.name);l.push({...c,note:"для: "+a.r.title})}));
+    if(!l.length){status("Всё нужное уже есть или в списке 🎉");setTimeout(()=>status(""),2500);return}burst(e.clientX,e.clientY,6);await addMiss(l)};
+  document.querySelectorAll("[data-addrec]").forEach(b=>b.onclick=async e=>{const x=recs[+b.dataset.addrec];burst(e.clientX,e.clientY,5);await addMiss([{...x,note:"для: "+[...x.for].join(", ")}])});
+  const aa=$("#addAllRec");if(aa)aa.onclick=async e=>{burst(e.clientX,e.clientY);await addMiss(recs.map(x=>({...x,note:"для: "+[...x.for].join(", ")})))};
+  document.querySelectorAll("[data-recmiss]").forEach(b=>b.onclick=async e=>{const a=all.find(x=>x.r.id===b.dataset.recmiss);if(!a)return;const open=S.shopping.filter(x=>!x.done);
+    const l=a.miss.filter(m=>!matchItem(m.t,open)).map(m=>({...cleanIng(m.t),note:"для: "+a.r.title}));burst(e.clientX,e.clientY,5);await addMiss(l)});
+}
+
 /* ---------- modal ---------- */
 function openModal(h){$("#sheet").innerHTML=h;$("#modal").classList.add("on");const f=$("#sheet").querySelector("input,button");f&&f.focus()}
 function closeModal(){$("#modal").classList.remove("on")}
@@ -640,7 +734,7 @@ document.addEventListener("click",async e=>{
     if(!day.meals[+i].done)burst(e.clientX,e.clientY);
     const meals=day.meals.map((m,k)=>k==+i?{...m,done:!m.done}:m);await put("menu",d,{...strip(day),meals});}
 });
-function renderAll(){drawScene();renderSay(false);renderChips();renderToday();renderMenu();renderPantry();renderShop();renderBudget();renderPreserves();renderRecipes();}
+function renderAll(){drawScene();renderSay(false);renderChips();renderToday();renderMenu();renderPantry();renderShop();renderBudget();renderPreserves();renderRecipes();renderSmart();}
 
 /* ---------- data layer (Google Таблица через Apps Script) ---------- */
 const DEFAULT_API = "";
